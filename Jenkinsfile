@@ -21,9 +21,12 @@ node {
 
         stage("Build Sale Service") {
             sh "mvn -f cool-erp/sale/pom.xml clean install"
+        }
+        
         stage("Build Inventory Service") {
             sh "mvn -f cool-erp/inventory/pom.xml clean install"
         }
+        
         stage("Build Product Service") {
             sh "mvn -f cool-erp/product/pom.xml clean install"
         }
