@@ -32,4 +32,11 @@ public class ReceptionController {
                                   @RequestParam("productId") long productId) {
         return service.newReceptionForPurchase(purchaseOrderId, productId);
     }
+
+    @PostMapping
+    @ResponseBody
+    public Reception confirmReception(@RequestParam("receptionId") long receptionId)
+    {
+        return service.confirmReception(receptionId);
+    }
 }

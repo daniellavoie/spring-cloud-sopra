@@ -32,7 +32,7 @@ public class ReceptionService {
         return receptionRepository.save(reception);
     }
 
-    public Reception receiveReception(long receptionId) {
+    public Reception confirmReception(long receptionId) {
         Reception reception = this.getReception(receptionId);
 
         //TODO Call other services
