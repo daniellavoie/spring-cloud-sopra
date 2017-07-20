@@ -36,7 +36,7 @@ public class ReceptionService {
 
     public Reception newReceptionForPurchase(long purchaseOrderId, long productId) {
         Reception reception = new Reception(purchaseOrderId, productId);
-        reception.setStatus(ReceptionStatus.OPEN);
+        reception.setStatus(ReceptionStatus.OPEN.toString());
         reception.setDate(new Date());
         return receptionRepository.save(reception);
     }
@@ -47,7 +47,7 @@ public class ReceptionService {
         purchaseOrderClient.notifyCommandReceived(reception.getPurchaseOrderId());
         inventoryClient.incrementInventory(reception.getProductId());
 
-        reception.setStatus(ReceptionStatus.RECEIVED);
+        reception.setStatus(ReceptionStatus.RECEIVED.toString());
         return receptionRepository.save(reception);
     }
 

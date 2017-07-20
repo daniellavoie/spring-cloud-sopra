@@ -33,7 +33,7 @@ public class ReceptionController {
         return service.newReceptionForPurchase(purchaseOrderId, productId);
     }
 
-    @PostMapping
+    @PostMapping(params = "receive")
     @ResponseBody
     public Reception confirmReception(@PathVariable("receptionId") long receptionId)
     {
