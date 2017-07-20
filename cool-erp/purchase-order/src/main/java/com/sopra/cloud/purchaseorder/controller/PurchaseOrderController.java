@@ -1,12 +1,15 @@
 package com.sopra.cloud.purchaseorder.controller;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.sopra.cloud.purchaseorder.model.Product;
 import com.sopra.cloud.purchaseorder.model.PurchaseOrder;
 import com.sopra.cloud.purchaseorder.service.PurchaseOrderService;
 
@@ -34,16 +37,30 @@ public class PurchaseOrderController {
         return purchaseOrderService.updatePurchaseOrder(purchaseOrder);
     }
 
-    @PostMapping(value = "/")
-    public PurchaseOrder createPurchaseOrder(PurchaseOrder pPurchaseOrder) {
+    @PostMapping(value = "?new&productId={productId}")
+    public PurchaseOrder createPurchaseOrder(@RequestParam("productId") long pProductId) {
         /* 1. Check product exists. */
-        // Product product = restTemplate.exchange("/product-service/" +
-        // pPurchaseOrder.getProductId(), HttpMethod.GET, null,.get();
+        Product product = null;
+        try {
+            product = restTemplate.exchange("/product-service/" + pProductId, HttpMethod.GET, null, Product.class)
+                    .getBody();
+        } catch (RuntimeException e) {
+            System.out.println("Exception during product retrieve");
+            return null;
+        }
+
+        if (product == null) {
+            System.out.println("Product not found");
+            return null;
+        }
 
         /* 2. Create purchase order. */
-        PurchaseOrder createdPurchaseOrder = purchaseOrderService.createPurchaseOrder(pPurchaseOrder);
+        PurchaseOrder purchaseOrder = new PurchaseOrder();
+        purchaseOrder.setProductId(pProductId);
+        PurchaseOrder createdPurchaseOrder = purchaseOrderService.createPurchaseOrder(purchaseOrder);
 
         /* 3. Inform reception purchase order created. */
+        // TODO
 
         return createdPurchaseOrder;
     }
