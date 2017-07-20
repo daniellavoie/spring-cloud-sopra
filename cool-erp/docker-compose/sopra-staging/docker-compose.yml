@@ -28,6 +28,7 @@ services:
   reception:
     image: daniellavoie/sopra-reception:staging
     environment:
+      - spring.application.name=reception-service
       - spring.cloud.config.enabled=true
       - eureka.client.enabled=true
       - spring.cloud.config.discovery.enabled=true
@@ -38,6 +39,7 @@ services:
   shipping:
     image: daniellavoie/sopra-shipping:staging
     environment:
+      - spring.application.name=shipping-service
       - spring.cloud.config.enabled=true
       - eureka.client.enabled=true
       - spring.cloud.config.discovery.enabled=true
@@ -48,6 +50,7 @@ services:
   purchase-order:
     image: daniellavoie/sopra-purchase-order:staging
     environment:
+      - spring.application.name=purchase-order-service
       - spring.cloud.config.enabled=true
       - eureka.client.enabled=true
       - spring.cloud.config.discovery.enabled=true
@@ -58,6 +61,7 @@ services:
   sale:
     image: daniellavoie/sopra-sale:staging
     environment:
+      - spring.application.name=sale-service
       - spring.cloud.config.enabled=true
       - eureka.client.enabled=true
       - spring.cloud.config.discovery.enabled=true
@@ -67,7 +71,8 @@ services:
 
   inventory:
     image: daniellavoie/sopra-inventory:staging
-    environment:
+    environment:  
+      - spring.application.name=inventory-service
       - spring.cloud.config.enabled=true
       - eureka.client.enabled=true
       - spring.cloud.config.discovery.enabled=true
@@ -78,6 +83,7 @@ services:
   product:
     image: daniellavoie/sopra-product:staging 
     environment:
+      - spring.application.name=product-service
       - spring.cloud.config.enabled=true
       - eureka.client.enabled=true
       - spring.cloud.config.discovery.enabled=true
