@@ -1,6 +1,5 @@
 package com.sopra.cloud.purchaseorder.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +24,7 @@ public class ClientAutoConfig {
 
     @Bean
     @ConditionalOnProperty(name = "service.mock", havingValue = "false", matchIfMissing = true)
-    public ProductClient productClientRestImpl(@Value("${service.mock}") boolean mock) {
+    public ProductClient productClientRestImpl() {
         return new ProductClientRestImpl(restTemplate());
     }
 
