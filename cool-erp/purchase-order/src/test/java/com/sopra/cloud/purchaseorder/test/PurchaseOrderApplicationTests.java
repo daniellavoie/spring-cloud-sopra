@@ -1,4 +1,4 @@
-package com.sopra.cloud.purchaseorder;
+package com.sopra.cloud.purchaseorder.test;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,10 +16,6 @@ public class PurchaseOrderApplicationTests {
 
     @Autowired
     private PurchaseOrderService purchaseOrderService;
-
-    @Test
-    public void contextLoads() {
-    }
 
     @Test
     public void createPurchaseOrder() {
