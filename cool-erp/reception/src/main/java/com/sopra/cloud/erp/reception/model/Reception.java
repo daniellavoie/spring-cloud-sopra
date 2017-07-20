@@ -15,7 +15,7 @@ public class Reception {
     private long productId;
     private Date date;
 
-    private ReceptionStatus status;
+    private String status;
 
     public Reception() {
     }
@@ -57,11 +57,11 @@ public class Reception {
         this.date = date;
     }
 
-    public ReceptionStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(ReceptionStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

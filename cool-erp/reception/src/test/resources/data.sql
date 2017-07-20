@@ -1,0 +1,1 @@
+INSERT INTO reception VALUES ('0', current_timestamp(), '1111', '22222', 'OPEN');
