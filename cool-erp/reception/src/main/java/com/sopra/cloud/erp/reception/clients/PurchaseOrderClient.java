@@ -1,6 +1,5 @@
 package com.sopra.cloud.erp.reception.clients;
 
-public interface PurchaseOrderClient {
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
