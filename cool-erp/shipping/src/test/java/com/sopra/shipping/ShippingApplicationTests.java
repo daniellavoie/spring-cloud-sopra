@@ -38,6 +38,14 @@ public class ShippingApplicationTests {
 		Assert.assertNotNull(postResponse.getBody().getId());
 		assertThat(postResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 		assertThat(postResponse.getBody().getId()).isGreaterThan(0);
+		assertThat(postResponse.getBody().getStatus()).isEqualTo("OPEN");
+
+		ResponseEntity<Shipping> postResponseConfirm = restTemplate
+				.postForEntity("/shipping/" + postResponse.getBody().getId() + "/?ship", shipModel, Shipping.class);
+		Assert.assertNotNull(postResponseConfirm.getBody().getId());
+		assertThat(postResponseConfirm.getStatusCode()).isEqualTo(HttpStatus.OK);
+		assertThat(postResponseConfirm.getBody().getId()).isGreaterThan(0);
+		assertThat(postResponseConfirm.getBody().getStatus()).isEqualTo("CONFIRMED");
 
 		Shipping getResponse = restTemplate.getForObject("/shipping?saleId=" + shipModel.getSaleId(), Shipping.class);
 		Assert.assertNotNull(getResponse.getId());
