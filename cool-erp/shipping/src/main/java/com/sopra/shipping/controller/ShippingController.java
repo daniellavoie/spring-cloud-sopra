@@ -1,7 +1,5 @@
 package com.sopra.shipping.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sopra.shipping.model.Shipping;
 import com.sopra.shipping.service.ShippingService;
-import com.sopra.shipping.service.ShippingServiceImpl;
 
 @Controller
 @RequestMapping("/shipping")

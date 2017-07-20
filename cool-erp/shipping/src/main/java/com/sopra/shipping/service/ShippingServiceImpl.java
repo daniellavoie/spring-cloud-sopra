@@ -3,6 +3,7 @@ package com.sopra.shipping.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sopra.inventory.client.InventoryClient;
 import com.sopra.shipping.model.Product;
 import com.sopra.shipping.model.Shipping;
 import com.sopra.shipping.repository.ShippingRepository;
@@ -12,6 +13,9 @@ public class ShippingServiceImpl implements ShippingService {
 
 	@Autowired
 	private ShippingRepository shippingRepository;
+	
+	@Autowired
+	private InventoryClient inventoryClient;
 	
 	public void test() {
 		Shipping shipping = new Shipping();
@@ -37,10 +41,14 @@ public class ShippingServiceImpl implements ShippingService {
 		Shipping shipping = shippingRepository.findById(shippingId);
 		shipping.setStatus("CONFIRMED");
 		
+		inventoryClient.decrement(shipping.getProductId());
+		
 		return shippingRepository.save(shipping);
 		
-		//Décrémentation de l'inventaire d'un produit
+		//Décrémentation de l'inventaire d'un produit TODO
 		//POST /inventory/{productId}?ship
+		
+		
 		
 	}
 
@@ -50,7 +58,7 @@ public class ShippingServiceImpl implements ShippingService {
 	@Override
 	public Shipping createShipping(int productId, int saleId) {
 		
-        // get product
+        // get product TODO
 		new Product();
 				
 		Shipping shipping = new Shipping();
