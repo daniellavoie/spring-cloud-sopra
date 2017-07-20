@@ -19,6 +19,12 @@ services:
       - SPRING_PROFILES_ACTIVE=staging
       - MANAGEMENT_SECURITY_ENABLED=false
 
+  sale:
+    image: daniellavoie/sopra-sale:staging
+    environment:
+      - SPRING_PROFILES_ACTIVE=staging
+      - MANAGEMENT_SECURITY_ENABLED=false
+
   inventory:
     image: daniellavoie/sopra-inventory:staging
     environment:
