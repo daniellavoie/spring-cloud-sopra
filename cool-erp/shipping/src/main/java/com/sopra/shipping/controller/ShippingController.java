@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sopra.shipping.model.Shipping;
 import com.sopra.shipping.service.ShippingService;
+import com.sopra.shipping.service.ShippingServiceImpl;
 
 @Controller
 @RequestMapping("/shipping")
@@ -45,10 +46,10 @@ public class ShippingController {
         return shippingService.listShippings();
     }
     
-    @RequestMapping(value="/test", method=RequestMethod.GET)
-    public void test() {
-    	shippingService.test();
-    }
+//    @RequestMapping(value="/test", method=RequestMethod.GET)
+//    public void test() {
+//    	shippingService.test();
+//    }
 }
 
 
