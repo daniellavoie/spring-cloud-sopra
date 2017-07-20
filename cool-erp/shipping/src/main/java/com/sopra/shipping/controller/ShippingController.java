@@ -28,8 +28,8 @@ public class ShippingController {
     
     // POST /shipping/shippingId?ship
     @RequestMapping(value="/{shippingId}", method = RequestMethod.POST)
-    public void confirm(@PathVariable(value="shippingId", required=true) int shippingId) {
-        shippingService.confirmShipping(shippingId);
+    public @ResponseBody Shipping confirm(@PathVariable(value="shippingId", required=true) int shippingId, @RequestParam(value="ship", required=true) String ship ) {
+        return shippingService.confirmShipping(shippingId);
     }
     
     // GET /shipping?saleId=saleId
@@ -39,7 +39,7 @@ public class ShippingController {
         return shippingService.getShipping(saleId);
     }
     
-    @RequestMapping(value="/bad", method=RequestMethod.GET)
+    @RequestMapping(value="/all", method=RequestMethod.GET)
     public @ResponseBody Iterable<Shipping> list() {
 
         return shippingService.listShippings();

@@ -1,10 +1,9 @@
 package com.sopra.shipping.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sopra.shipping.model.Product;
 import com.sopra.shipping.model.Shipping;
 import com.sopra.shipping.repository.ShippingRepository;
 
@@ -25,16 +24,23 @@ public class ShippingService {
 	    return shipping;
 	}
 
-	public void confirmShipping(int shippingId) {
+	public Shipping confirmShipping(int shippingId) {
 		
 		Shipping shipping = shippingRepository.findById(shippingId);
 		shipping.setStatus("CONFIRMED");
-		shippingRepository.save(shipping);
+		
+		return shippingRepository.save(shipping);
+		
+		//Décrémentation de l'inventaire d'un produit
+		//POST /inventory/{productId}?ship
 		
 	}
 
 	public Shipping createShipping(int productId, int saleId) {
 		
+        // get product
+		new Product();
+				
 		Shipping shipping = new Shipping();
 		shipping.setProductId(productId);
 		shipping.setSaleId(saleId);
