@@ -17,33 +17,33 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Assert;
+
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ShippingApplication.class, webEnvironment=WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = ShippingApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 public class ShippingApplicationTests {
 
-                @Autowired
-                private TestRestTemplate restTemplate;
-                
-                @Test
-                public void testRepository() {
-                                
-                                Shipping shipModel = new Shipping();
-                                shipModel.setProductId(1);
-                                shipModel.setSaleId(1); 
-                                
-                                ResponseEntity<Shipping> postResponse = restTemplate.postForEntity("/shipping?productId="+shipModel.getProductId()+"&saleId="+shipModel.getSaleId(), shipModel,  Shipping.class);
-                                Assert.assertNotNull(postResponse.getBody().getId());
-                    assertThat(postResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
-                    assertThat(postResponse.getBody().getId()).isGreaterThan(0);
-                
-                                
-                                Shipping getResponse = restTemplate.getForObject("/shipping?saleId="+shipModel.getSaleId(),  Shipping.class);
-                                Assert.assertNotNull(getResponse.getId()); 
-                                assertThat(getResponse.getId()).isGreaterThan(0);
-                                assertThat(getResponse.getSaleId()).isEqualTo(shipModel.getId());
-                                
-                }
+	@Autowired
+	private TestRestTemplate restTemplate;
 
+	@Test
+	public void testRepository() {
 
+		Shipping shipModel = new Shipping();
+		shipModel.setProductId(1);
+		shipModel.setSaleId(1);
+
+		ResponseEntity<Shipping> postResponse = restTemplate.postForEntity(
+				"/shipping?productId=" + shipModel.getProductId() + "&saleId=" + shipModel.getSaleId(), shipModel,
+				Shipping.class);
+		Assert.assertNotNull(postResponse.getBody().getId());
+		assertThat(postResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+		assertThat(postResponse.getBody().getId()).isGreaterThan(0);
+
+		Shipping getResponse = restTemplate.getForObject("/shipping?saleId=" + shipModel.getSaleId(), Shipping.class);
+		Assert.assertNotNull(getResponse.getId());
+		assertThat(getResponse.getId()).isGreaterThan(0);
+		assertThat(getResponse.getSaleId()).isEqualTo(shipModel.getSaleId());
+
+	}
 
 }
