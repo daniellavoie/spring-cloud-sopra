@@ -4,6 +4,6 @@ MAINTAINER Daniel Lavoie <dlavoie@live.ca>
 
 ADD target/sopra-config-server.jar /sopra-config-server/sopra-config-server.jar
 
-EXPOSE 8080
+EXPOSE 8888
 
 CMD ["java", "-Xmx128m", "-jar", "/sopra-config-server/sopra-config-server.jar"]
