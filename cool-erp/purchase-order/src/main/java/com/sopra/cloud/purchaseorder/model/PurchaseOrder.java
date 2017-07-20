@@ -9,53 +9,59 @@ import javax.persistence.Id;
 
 @Entity
 public class PurchaseOrder {
-	private long id;
-	private long productId;
-	private Date date;
-	private String status;
 
-	public PurchaseOrder() {
+    public static final String CONFIRMED = "CONFIRMED";
 
-	}
+    public static final String CLOSED = "CLOSED";
 
-	public PurchaseOrder(long id, long productId, Date date, String status) {
-		this.id = id;
-		this.productId = productId;
-		this.date = date;
-		this.status = status;
-	}
+    private long id;
+    private long productId;
+    private Date date;
+    private String status;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public long getId() {
-		return id;
-	}
+    public PurchaseOrder() {
+        date = new Date();
+        status = CONFIRMED;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public PurchaseOrder(long id, long productId, Date date, String status) {
+        this.id = id;
+        this.productId = productId;
+        this.date = date;
+        this.status = status;
+    }
 
-	public long getProductId() {
-		return productId;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public long getId() {
+        return id;
+    }
 
-	public void setProductId(long productId) {
-		this.productId = productId;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public long getProductId() {
+        return productId;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setProductId(long productId) {
+        this.productId = productId;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
