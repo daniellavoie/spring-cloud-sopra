@@ -19,8 +19,8 @@ public class ShippingController {
 
 // POST /shipping?productId=productId&saleId=saleId
     @RequestMapping(method=RequestMethod.POST)
-    public void create(@RequestParam(value="productId", required=true) int productId, @RequestParam(value="productId", required=true) int saleId) {
-    	shippingService.createShipping(productId, saleId);
+    public @ResponseBody Shipping create(@RequestParam(value="productId", required=true) int productId, @RequestParam(value="productId", required=true) int saleId) {
+    	return shippingService.createShipping(productId, saleId);
     }
     
     // POST /shipping/shippingId?ship

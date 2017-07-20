@@ -24,12 +24,21 @@ public class ShippingService {
 	}
 
 	public void confirmShipping(int shippingId) {
-		// TODO Auto-generated method stub
+		
+		Shipping shipping = shippingRepository.findById(shippingId);
+		shipping.setStatus("CONFIRMED");
+		shippingRepository.save(shipping);
 		
 	}
 
-	public void createShipping(int productId, int saleId) {
-		// TODO Auto-generated method stub
+	public Shipping createShipping(int productId, int saleId) {
+		
+		Shipping shipping = new Shipping();
+		shipping.setProductId(productId);
+		shipping.setSaleId(saleId);
+		shipping.setStatus("OPEN");
+		
+		return shippingRepository.save(shipping);
 		
 	}
 
