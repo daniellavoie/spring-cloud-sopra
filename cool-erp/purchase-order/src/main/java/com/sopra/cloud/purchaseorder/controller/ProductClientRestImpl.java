@@ -16,8 +16,7 @@ public class ProductClientRestImpl implements ProductClient {
     @Override
     public Product getProduct(long pProductId) {
         Product product = restTemplate
-                .exchange("/product-service/product?productId=" + pProductId, HttpMethod.GET, null, Product.class)
-                .getBody();
+                .exchange("/product-service/product/" + pProductId, HttpMethod.GET, null, Product.class).getBody();
 
         return product;
     }

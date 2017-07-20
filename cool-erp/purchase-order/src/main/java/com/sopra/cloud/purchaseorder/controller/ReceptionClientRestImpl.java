@@ -16,7 +16,7 @@ public class ReceptionClientRestImpl implements ReceptionClient {
     @Override
     public void createReception(long pPurchaseOrderId, long pProductId) {
         restTemplate.exchange(
-                "/reception-service/reception?purchaseOrderId" + pPurchaseOrderId + "&productId=" + pProductId,
-                HttpMethod.GET, null, Product.class).getBody();
+                "/reception-service/reception?purchaseOrderId=" + pPurchaseOrderId + "&productId=" + pProductId,
+                HttpMethod.POST, null, Product.class).getBody();
     }
 }
