@@ -28,8 +28,8 @@ public class ShippingController {
     
     // POST /shipping/shippingId?ship
     @RequestMapping(value="/{shippingId}", method = RequestMethod.POST)
-    public void confirm(@PathVariable(value="shippingId", required=true) int shippingId) {
-        shippingService.confirmShipping(shippingId);
+    public @ResponseBody Shipping confirm(@PathVariable(value="shippingId", required=true) int shippingId) {
+        return shippingService.confirmShipping(shippingId);
     }
     
     // GET /shipping?saleId=saleId
