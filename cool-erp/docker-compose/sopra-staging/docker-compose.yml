@@ -1,6 +1,28 @@
 version : '2'
 
 services:
+  eureka:
+    image: daniellavoie/sopra-eureka-server:staging
+    environment:
+      - spring.profiles.active=staging
+      - management.security.enabled=false
+    ports:
+      - "8761"
+    labels:
+      - "traefik.backend=staging-sopra-eureka"
+      - "traefik.frontend.rule=Host:staging.sopra.eureka.cspinformatique.com"
+      - "traefik.port=8761"
+      - "traefik.docker.network=traefik_default"
+    networks:
+      - traefik
+      - default
+
+  config:
+    image: daniellavoie/sopra-config-server:staging 
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka:8761/eureka
+      - spring.profiles.active=staging
+      - management.security.enabled=false
   reception:
     image: daniellavoie/sopra-reception:staging
     environment:
