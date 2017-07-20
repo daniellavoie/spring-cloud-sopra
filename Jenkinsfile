@@ -44,7 +44,7 @@ node {
             docker.build("daniellavoie/sopra-sale", "cool-erp/sale")
             docker.build("daniellavoie/sopra-inventory", "cool-erp/inventory")
             docker.build("daniellavoie/sopra-product", "cool-erp/product")
-            docker.build("daniellavoie/sopra-config-server", "cool-erp/config")
+            docker.build("daniellavoie/sopra-config-server", "cool-erp/config-server")
 
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'github-daniellavoie', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                 sh "docker login --password=${PASSWORD} --username=${USERNAME}"
