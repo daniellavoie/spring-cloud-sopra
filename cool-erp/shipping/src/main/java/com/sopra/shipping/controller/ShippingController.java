@@ -2,6 +2,7 @@ package com.sopra.shipping.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,14 +20,14 @@ public class ShippingController {
 
 // POST /shipping?productId=productId&saleId=saleId
     @RequestMapping(method=RequestMethod.POST)
-    public void create(@RequestParam(value="productId", required=true) int productId, @RequestParam(value="productId", required=true) int saleId) {
-    	shippingService.createShipping(productId, saleId);
+    public @ResponseBody Shipping create(@RequestParam(value="productId", required=true) int productId, @RequestParam(value="productId", required=true) int saleId) {
+    	return shippingService.createShipping(productId, saleId);
     }
     
     // POST /shipping/shippingId?ship
     @RequestMapping(value="/{shippingId}", method = RequestMethod.POST)
-    public void confirm(@RequestParam(value="shippingId", required=true) int shippingId) {
-        shippingService.confirmShipping(shippingId);
+    public @ResponseBody Shipping confirm(@PathVariable(value="shippingId", required=true) int shippingId, @RequestParam(value="ship", required=true) String ship ) {
+        return shippingService.confirmShipping(shippingId);
     }
     
     // GET /shipping?saleId=saleId
@@ -36,10 +37,16 @@ public class ShippingController {
         return shippingService.getShipping(saleId);
     }
     
-    @RequestMapping(value="/test", method=RequestMethod.GET)
-    public void test() {
-    	shippingService.test();
+    @RequestMapping(value="/all", method=RequestMethod.GET)
+    public @ResponseBody Iterable<Shipping> list() {
+
+        return shippingService.listShippings();
     }
+    
+//    @RequestMapping(value="/test", method=RequestMethod.GET)
+//    public void test() {
+//    	shippingService.test();
+//    }
 }
 
 

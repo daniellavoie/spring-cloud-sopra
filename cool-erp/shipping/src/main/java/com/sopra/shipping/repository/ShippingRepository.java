@@ -5,6 +5,8 @@ import com.sopra.shipping.model.Shipping;
 
 public interface ShippingRepository extends CrudRepository<Shipping, Integer> {
 
+	public Shipping findById(int shippingId);
+
 	public Shipping findBySaleId(int saleId);
 
 

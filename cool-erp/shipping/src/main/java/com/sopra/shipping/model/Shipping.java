@@ -15,6 +15,10 @@ public class Shipping {
     
     private int saleId;
 
+    public Shipping() {
+    	date = new Date();
+    }
+    
 	public int getSaleId() {
 		return saleId;
 	}
