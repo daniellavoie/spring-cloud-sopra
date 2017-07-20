@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface PurchaseOrderClient
 {
     @RequestMapping(params = "purchaseOrderId", method = RequestMethod.POST)
-    void notifyCommandReceived();
+    void notifyCommandReceived(long purchaseOrderId);
 }
