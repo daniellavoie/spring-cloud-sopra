@@ -35,7 +35,7 @@ public class ReceptionController {
 
     @PostMapping
     @ResponseBody
-    public Reception confirmReception(@RequestParam("receptionId") long receptionId)
+    public Reception confirmReception(@PathVariable("receptionId") long receptionId)
     {
         return service.confirmReception(receptionId);
     }
