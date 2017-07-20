@@ -1,7 +1,10 @@
 package com.sopra.shipping.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +28,7 @@ public class ShippingController {
     
     // POST /shipping/shippingId?ship
     @RequestMapping(value="/{shippingId}", method = RequestMethod.POST)
-    public void confirm(@RequestParam(value="shippingId", required=true) int shippingId) {
+    public void confirm(@PathVariable(value="shippingId", required=true) int shippingId) {
         shippingService.confirmShipping(shippingId);
     }
     
@@ -34,6 +37,12 @@ public class ShippingController {
     public @ResponseBody Shipping get(@RequestParam(value="saleId", required=true) int saleId) {
 
         return shippingService.getShipping(saleId);
+    }
+    
+    @RequestMapping(value="/bad", method=RequestMethod.GET)
+    public @ResponseBody Iterable<Shipping> list() {
+
+        return shippingService.listShippings();
     }
     
     @RequestMapping(value="/test", method=RequestMethod.GET)
