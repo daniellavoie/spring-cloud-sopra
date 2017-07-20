@@ -43,6 +43,13 @@ services:
       - SPRING_PROFILES_ACTIVE=staging
       - MANAGEMENT_SECURITY_ENABLED=false
 
+  eureka:
+    image: daniellavoie/sopra-eureka-server:staging
+    environment:
+      - SPRING_PROFILES_ACTIVE=staging
+      - MANAGEMENT_SECURITY_ENABLED=false
+
+
 networks:
   traefik:
     external:
